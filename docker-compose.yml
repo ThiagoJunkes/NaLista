@@ -1,0 +1,32 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: nalista_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: nalista_user
+      POSTGRES_PASSWORD: nalista_pass
+      POSTGRES_DB: nalista_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+  node:
+    build: ./server
+    container_name: nalista_node
+    restart: always
+    depends_on:
+      - postgres
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=postgres
+      - DB_USER=nalista_user
+      - DB_PASS=nalista_pass
+      - DB_NAME=nalista_db
+      - DB_PORT=5432
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+    command: ["npm", "start"]
