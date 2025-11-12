@@ -1,9 +1,12 @@
 import express from "express";
+import cors from "cors";
 import { setupDatabase } from "./setupDatabase.js";
 import listRoutes from './routes/listRoutes.js';
 import itemRoutes from './routes/itemRoutes.js';
 
 const app = express();
+
+app.use(cors()); // Adicione essa linha para habilitar o CORS
 app.use(express.json());
 
 app.get("/", (req, res) => res.send("NaLista API rodando"));
