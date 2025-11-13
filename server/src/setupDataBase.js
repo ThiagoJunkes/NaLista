@@ -14,7 +14,7 @@ export async function setupDatabase() {
       id SERIAL PRIMARY KEY,
       list_id INTEGER REFERENCES list(id) ON DELETE CASCADE,
       name VARCHAR(255) NOT NULL,
-      quantity INTEGER DEFAULT 1,
+      quantity INTEGER DEFAULT 0,
       checked BOOLEAN DEFAULT false,
       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );

@@ -26,6 +26,9 @@ coverage
 # postgres output
 data/
 
+# whisper.cpp
+whisper/
+
 # nyc test coverage
 .nyc_output
 

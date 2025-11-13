@@ -9,7 +9,7 @@ export const createItem = async (req, res) => {
     if (!list) return res.status(404).json({ message: 'Lista não encontrada' });
     const item = new Item({
       name,
-      quantity: quantity ?? 1,
+      quantity: quantity ?? 0,
       list: listId
     });
     const created = await item.save();
